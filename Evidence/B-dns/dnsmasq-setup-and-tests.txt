@@ -1,0 +1,41 @@
+===== Bhawana (DNS server 10.7.19.109) =====
+dnsmasq: syntax check OK.
+(sudo brew services start dnsmasq -> Successfully started dnsmasq, label sh.brew.dnsmasq)
+dig @127.0.0.1 app.team07.test +short
+10.7.7.5
+
+===== Kevish (client) - explicit server =====
+dig @10.7.19.109 app.team07.test +short
+dig @10.7.19.109 api.team07.test +short
+10.7.7.5
+10.7.7.5
+
+===== Kevish (client) - after setting resolver =====
+sudo networksetup -setdnsservers Wi-Fi 10.7.19.109
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+dig app.team07.test +short
+dig google.com +short
+10.7.7.5
+142.250.122.102
+142.250.122.101
+142.250.122.139
+142.250.122.100
+142.250.122.138
+142.250.122.113
+
+===== Abhimaan (client) - after setting resolver =====
+sudo networksetup -setdnsservers Wi-Fi 10.7.19.109
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+dig app.team07.test +short
+dig google.com +short
+10.7.7.5
+142.250.122.102
+142.250.122.101
+142.250.122.139
+142.250.122.100
+142.250.122.138
+142.250.122.113
+
+===== Abhimaan - explicit server (closing the gap) =====
+dig @10.7.19.109 app.team07.test +short
+10.7.7.5

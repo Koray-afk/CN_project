@@ -1,0 +1,12 @@
+Bhawana: grep team07 $(brew --prefix)/var/log/dnsmasq.log | tail -n 10
+Oct  4 20:10:01 dnsmasq[19402]: using only locally-known addresses for team07.test
+Oct  4 20:10:12 dnsmasq[19402]: query[A] app.team07.test from 10.7.21.121
+Oct  4 20:10:12 dnsmasq[19402]: config app.team07.test is 10.7.7.5
+Oct  4 20:15:15 dnsmasq[19402]: query[A] app.team07.test from 10.7.21.121
+Oct  4 20:15:15 dnsmasq[19402]: config app.team07.test is 10.7.7.5
+Oct  4 20:18:39 dnsmasq[19402]: query[A] app.team07.test from 10.7.21.121
+Oct  4 20:18:39 dnsmasq[19402]: config app.team07.test is 10.7.7.5
+Oct  4 20:19:37 dnsmasq[19402]: query[A] app.team07.test from 10.7.21.121
+Oct  4 20:19:37 dnsmasq[19402]: config app.team07.test is 10.7.7.5
+
+Forwarding evidence (same log): "query[A] mmx-ds.cdn.whatsapp.net from 10.7.7.5 / forwarded ... to 1.1.1.1 / reply ... is 57.144.125.32"

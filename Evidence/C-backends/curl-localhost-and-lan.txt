@@ -1,0 +1,21 @@
+===== Kevish: localhost =====
+curl -i http://localhost:3001/api/status     -> HTTP/1.1 200 OK  X-Backend: A  {"backend":"A","status":"ok","time":"2026-10-04T14:29:54.389Z"}
+curl -i http://localhost:3002/api/status     -> HTTP/1.1 200 OK  X-Backend: B  {"backend":"B","status":"ok","time":"2026-10-04T14:29:54.402Z"}
+(full headers: X-Powered-By: Express, Cache-Control: no-store, Content-Type: application/json; charset=utf-8, Content-Length: 63)
+
+===== Abhimaan: across the LAN to Kevish =====
+curl -i http://10.7.21.121:3001/api/status   -> HTTP/1.1 200 OK  X-Backend: A  {"backend":"A","status":"ok","time":"2026-10-04T14:31:13.841Z"}
+curl -i http://10.7.21.121:3002/api/status   -> HTTP/1.1 200 OK  X-Backend: B  {"backend":"B","status":"ok","time":"2026-10-04T14:31:14.019Z"}
+
+===== Kevish, through the edge: GET / =====
+curl -i https://app.team07.test/
+HTTP/2 200
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 17:06:05 GMT
+content-type: application/json; charset=utf-8
+content-length: 95
+x-powered-by: Express
+x-backend: A
+etag: W/"5f-vN0ThNPTcXd0AqQESG+Zpwan9vo"
+
+{"service":"team backend","backend":"A","host":"Kevishs-MacBook-Pro.local","message":"running"}

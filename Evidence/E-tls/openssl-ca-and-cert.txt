@@ -1,0 +1,8 @@
+Abhimaan's Mac, OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
+(commands: certs/make-certs.sh, certs/ca.cnf, certs/leaf.cnf)
+
+Certificate request self-signature ok
+subject=CN=app.team07.test
+server.crt: OK
+X509v3 Subject Alternative Name:
+    DNS:app.team07.test, DNS:api.team07.test

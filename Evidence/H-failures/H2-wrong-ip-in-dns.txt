@@ -1,0 +1,18 @@
+H2 - DNS record points to the wrong IP (Bhawana edits dnsmasq; Kevish tests). Proves: DNS is a directory, not a connection.
+Change: host-record=app.team07.test,10.7.7.5 -> 10.7.21.121 (api.team07.test left correct); sudo brew services restart dnsmasq
+Kevish:
+dig app.team07.test +short                  -> 10.7.21.121      (resolution "succeeds" with the wrong IP)
+curl https://app.team07.test/api/status; echo "exit=$?"
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+exit=60
+curl https://api.team07.test/api/status; echo "exit=$?"
+{"backend":"A","status":"ok","time":"2026-10-04T16:56:37.481Z"}exit=0     (api still correct)
+Extra proof (Kevish):
+sudo lsof -iTCP:443 -sTCP:LISTEN -n -P
+nginx 6501 root 8u IPv4 ... TCP *:443 (LISTEN)    nginx 6528 nobody ... (a leftover nginx on Kevish's own Mac)
+curl -v --resolve app.team07.test:443:10.7.21.121 https://app.team07.test/api/status | grep ...
+* Connected to app.team07.test (10.7.21.121) port 443          <- TCP handshake succeeded at the wrong host
+* (304) (IN), TLS handshake, Certificate (11):
+* SSL certificate problem: unable to get local issuer certificate     <- TLS rejected it: not signed by team07 Local Root CA
+RESTORE: host-record set back to 10.7.7.5, dnsmasq restarted; dig app.team07.test +short -> 10.7.7.5 ; curl -s https://app.team07.test/api/status -> {"backend":"B",...}
+Viva: the wrong destination was stopped at the TLS layer (certificate validation), not TCP, because Kevish's own Mac also had an nginx on 443.

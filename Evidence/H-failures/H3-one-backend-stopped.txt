@@ -1,0 +1,7 @@
+H3 - Backend A stopped (Ctrl+C in the 3001 tab). Proves: edge keeps serving through B (max_fails + fail_timeout + proxy_next_upstream).
+Kevish:
+for i in 1 2 3 4 5 6; do curl -si https://app.team07.test/api/status | grep -i x-backend; done
+x-backend: B  x6   (no failed requests)
+Abhimaan: tail -n 5 /opt/homebrew/var/log/nginx/error.log
+2026/10/04 22:30:18 [error] 17147#0: *78 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 10.7.21.121, server: app.team07.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.21.121:3001/api/status", host: "app.team07.test"
+RESTORE (A restarted, ~10 s fail_timeout): loop -> x-backend: B, B, A, B  (A back in rotation)

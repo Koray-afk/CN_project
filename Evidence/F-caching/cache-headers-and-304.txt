@@ -1,0 +1,35 @@
+curl -I https://app.team07.test/api/cached
+HTTP/2 200
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 15:09:24 GMT
+content-type: application/json; charset=utf-8
+content-length: 49
+x-powered-by: Express
+x-backend: B
+cache-control: public, max-age=60
+etag: W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+
+ETAG=$(curl -sI https://app.team07.test/api/cached | grep -i '^etag' | cut -d' ' -f2 | tr -d '\r')
+echo $ETAG                -> W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+curl -I -H "If-None-Match: $ETAG" https://app.team07.test/api/cached
+
+----- 304 served by Backend B (15:09:40) -----
+HTTP/2 304
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 15:09:40 GMT
+x-powered-by: Express
+x-backend: B
+cache-control: public, max-age=60
+etag: W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+
+----- 304 served by Backend A (16:23:52) -----
+HTTP/2 304
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 16:23:52 GMT
+x-powered-by: Express
+x-backend: A
+cache-control: public, max-age=60
+etag: W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+
+(Also 304 from A at 16:23:54 and 16:24:17, from B at 16:24:16 - same ETag on both backends.)
+Contrast: /api/status uses Cache-Control: no-store and a different ETag per backend, so it is never cached.

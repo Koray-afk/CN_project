@@ -1,0 +1,14 @@
+H1 - Wrong DNS server (Kevish). Proves: DNS and IP connectivity are independent layers.
+sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 ; flush cache
+dig app.team07.test
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 3101
+;; AUTHORITY SECTION:
+.   86230 IN SOA a.root-servers.net. nstld.verisign-grs.com. 2026100400 1800 900 604800 86400
+;; Query time: 13 msec   ;; SERVER: 8.8.8.8#53(8.8.8.8)   ;; WHEN: Sun Oct 04 22:25:05 IST 2026
+curl https://app.team07.test/api/status; echo "exit=$?"
+curl: (6) Could not resolve host: app.team07.test
+exit=6
+ping -c 2 10.7.7.5      -> 2 received, 0.0% loss (64 bytes ... ttl=64)
+curl --resolve app.team07.test:443:10.7.7.5 https://app.team07.test/api/status
+{"backend":"B","status":"ok","time":"2026-10-04T16:55:26.041Z"}
+RESTORE: sudo networksetup -setdnsservers Wi-Fi 10.7.19.109 ; flush ; dig app.team07.test +short -> 10.7.7.5

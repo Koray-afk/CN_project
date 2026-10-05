@@ -1,0 +1,37 @@
+===== KEVISH (MAC 3) =====
+which curl dig nslookup ping openssl
+ipconfig getifaddr en0
+ipconfig getoption en0 subnet_mask
+route -n get default | grep gateway
+ifconfig en0 | grep ether
+/usr/bin/curl
+/usr/bin/dig
+/usr/bin/nslookup
+/sbin/ping
+/opt/homebrew/bin/openssl
+10.7.21.121
+255.255.224.0
+    gateway: 10.7.0.1
+	ether ba:53:b8:ee:a3:2f
+
+===== Bhawana =====
+/usr/bin/curl
+/usr/bin/dig
+/usr/bin/nslookup
+/sbin/ping
+/opt/homebrew/bin/openssl
+10.7.19.109
+255.255.224.0
+    gateway: 10.7.0.1
+	ether 1a:83:7b:75:38:a9
+
+===== Abhimaan =====
+/usr/bin/curl
+/usr/bin/dig
+/usr/bin/nslookup
+/sbin/ping
+/opt/homebrew/bin/openssl
+10.7.7.5
+255.255.224.0
+    gateway: 10.7.0.1
+	ether 72:94:6f:7b:aa:c9

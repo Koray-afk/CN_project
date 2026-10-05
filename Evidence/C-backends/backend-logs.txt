@@ -1,0 +1,27 @@
+Backend B tab (cd ~/cn-backend && BACKEND=B PORT=3002 node server.js)
+Backend B listening on 0.0.0.0:3002
+2026-10-04T14:29:54.401Z  from=127.0.0.1  GET /api/status          <- Kevish's own localhost test
+2026-10-04T14:31:14.018Z  from=10.7.7.5  GET /api/status           <- Abhimaan's direct LAN test
+2026-10-04T14:59:51.794Z  from=10.7.7.5  GET /api/status           <- via nginx (edge)
+2026-10-04T14:59:52.163Z  from=10.7.7.5  GET /api/status
+2026-10-04T14:59:52.340Z  from=10.7.7.5  GET /api/status
+2026-10-04T15:04:51.307Z  from=10.7.7.5  GET /api/status
+2026-10-04T15:08:50.198Z  from=10.7.7.5  HEAD /api/status
+2026-10-04T15:09:24.640Z  from=10.7.7.5  HEAD /api/cached
+2026-10-04T15:09:40.924Z  from=10.7.7.5  HEAD /api/cached
+2026-10-04T16:22:53.694Z  from=10.7.7.5  GET /api/status
+2026-10-04T16:22:55.443Z  from=10.7.7.5  GET /api/status
+
+Backend A tab (cd ~/cn-backend && BACKEND=A PORT=3001 node server.js)
+Backend A listening on 0.0.0.0:3001
+2026-10-04T14:29:54.388Z  from=127.0.0.1  GET /api/status
+2026-10-04T14:31:13.840Z  from=10.7.7.5  GET /api/status
+2026-10-04T14:59:01.829Z  from=10.7.7.5  GET /api/status
+2026-10-04T14:59:51.864Z  from=10.7.7.5  GET /api/status
+2026-10-04T15:02:11.729Z  from=10.7.7.5  GET /api/status
+2026-10-04T15:09:40.694Z  from=10.7.7.5  HEAD /api/cached
+2026-10-04T16:22:54.522Z  from=10.7.7.5  GET /api/status
+2026-10-04T16:22:56.282Z  from=10.7.7.5  GET /api/status
+
+Reading: every proxied request shows from=10.7.7.5 (Abhimaan's edge). Backends never see the client IP; it travels in X-Forwarded-For.
+(Lines abridged from the full logs pasted in the session; the abbreviation only drops repeated /api/status rows.)

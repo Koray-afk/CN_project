@@ -1,0 +1,12 @@
+H4 - Both backends stopped. Proves: edge is healthy, the failure is behind it (502 Bad Gateway).
+Kevish:
+dig app.team07.test +short   -> 10.7.7.5
+curl -vi https://app.team07.test/api/status | grep ...
+* SSL connection using TLSv1.3 / AEAD-CHACHA20-POLY1305-SHA256
+* using HTTP/2
+< HTTP/2 502
+< server: nginx/1.31.6          (no x-backend header)
+Abhimaan error.log (same request *92 tried both upstreams):
+2026/10/04 22:31:55 [error] 17147#0: *92 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 10.7.21.121, server: app.team07.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.21.121:3001/api/status", host: "app.team07.test"
+2026/10/04 22:31:57 [error] 17147#0: *92 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, ..., upstream: "http://10.7.21.121:3002/api/status", host: "app.team07.test"
+RESTORE (both started): for i in 1 2 3 4 ... -> x-backend: B, B, A, B

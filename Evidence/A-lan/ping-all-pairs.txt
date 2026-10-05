@@ -1,0 +1,62 @@
+Second round (after Wi-Fi reconnect on Kevish). All six directions: 0.0% packet loss, ttl=64.
+(The first round failed - see troubleshooting-no-route-to-host.md.)
+
+===== Ran on Bhawana (10.7.19.109): ping Kevish, ping Abhimaan =====
+ping -c 3 10.7.21.121
+ping -c 3 10.7.7.5
+PING 10.7.21.121 (10.7.21.121): 56 data bytes
+64 bytes from 10.7.21.121: icmp_seq=0 ttl=64 time=195.906 ms
+64 bytes from 10.7.21.121: icmp_seq=1 ttl=64 time=42.936 ms
+64 bytes from 10.7.21.121: icmp_seq=2 ttl=64 time=109.677 ms
+
+--- 10.7.21.121 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 42.936/116.173/195.906/62.618 ms
+PING 10.7.7.5 (10.7.7.5): 56 data bytes
+64 bytes from 10.7.7.5: icmp_seq=0 ttl=64 time=57.803 ms
+64 bytes from 10.7.7.5: icmp_seq=1 ttl=64 time=119.347 ms
+64 bytes from 10.7.7.5: icmp_seq=2 ttl=64 time=168.168 ms
+
+--- 10.7.7.5 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 57.803/115.106/168.168/45.156 ms
+
+===== Ran on Abhimaan (10.7.7.5): ping Kevish, ping Bhawana =====
+ping -c 3 10.7.21.121
+ping -c 3 10.7.19.109
+PING 10.7.21.121 (10.7.21.121): 56 data bytes
+64 bytes from 10.7.21.121: icmp_seq=0 ttl=64 time=28.622 ms
+64 bytes from 10.7.21.121: icmp_seq=1 ttl=64 time=35.208 ms
+64 bytes from 10.7.21.121: icmp_seq=2 ttl=64 time=174.340 ms
+
+--- 10.7.21.121 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 28.622/79.390/174.340/67.194 ms
+PING 10.7.19.109 (10.7.19.109): 56 data bytes
+64 bytes from 10.7.19.109: icmp_seq=0 ttl=64 time=77.980 ms
+64 bytes from 10.7.19.109: icmp_seq=1 ttl=64 time=102.467 ms
+64 bytes from 10.7.19.109: icmp_seq=2 ttl=64 time=122.834 ms
+
+--- 10.7.19.109 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 77.980/101.094/122.834/18.337 ms
+
+===== Ran on Kevish (10.7.21.121): ping Bhawana, ping Abhimaan =====
+ping -c 3 10.7.19.109
+ping -c 3 10.7.7.5
+PING 10.7.19.109 (10.7.19.109): 56 data bytes
+64 bytes from 10.7.19.109: icmp_seq=0 ttl=64 time=63.696 ms
+64 bytes from 10.7.19.109: icmp_seq=1 ttl=64 time=65.337 ms
+64 bytes from 10.7.19.109: icmp_seq=2 ttl=64 time=128.906 ms
+
+--- 10.7.19.109 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 63.696/85.980/128.906/30.361 ms
+PING 10.7.7.5 (10.7.7.5): 56 data bytes
+64 bytes from 10.7.7.5: icmp_seq=0 ttl=64 time=13.669 ms
+64 bytes from 10.7.7.5: icmp_seq=1 ttl=64 time=33.087 ms
+64 bytes from 10.7.7.5: icmp_seq=2 ttl=64 time=114.673 ms
+
+--- 10.7.7.5 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 13.669/53.810/114.673/43.761 ms

@@ -1,0 +1,9 @@
+H5 - Wrong destination port (Kevish). Proves: IP picks the machine, port picks the service.
+nc -vz 10.7.7.5 443      -> Connection to 10.7.7.5 port 443 [tcp/https] succeeded!
+nc -vz 10.7.7.5 8443     -> nc: connectx to 10.7.7.5 port 8443 (tcp) failed: Connection refused
+ping -c 2 10.7.7.5       -> 2 packets received, 0.0% packet loss
+curl https://app.team07.test:8443/api/status; echo "exit=$?"
+curl: (7) Failed to connect to app.team07.test port 8443 after 1173 ms: Couldn't connect to server
+exit=7
+No settings changed; nothing to restore.
+(Optional, not captured: Wireshark of SYN answered by RST,ACK.)

@@ -1,0 +1,43 @@
+curl -v --tls-max 1.2 https://app.team07.test/api/status 2>&1 | tee ~/curl-verbose.txt
+* Host app.team07.test:443 was resolved.
+* IPv6: (none)
+* IPv4: 10.7.7.5
+*   Trying 10.7.7.5:443...
+* Connected to app.team07.test (10.7.7.5) port 443
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/cert.pem
+* (304) (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.2 / ECDHE-RSA-CHACHA20-POLY1305 / [blank] / UNDEF
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=app.team07.test
+*  start date: Oct  4 15:00:27 2026 GMT
+*  expire date: Nov  5 15:00:27 2027 GMT
+*  subjectAltName: host "app.team07.test" matched cert's "app.team07.test"
+*  issuer: CN=team07 Local Root CA
+*  SSL certificate verify ok.
+* using HTTP/2
+> GET /api/status HTTP/2
+> Host: app.team07.test
+> User-Agent: curl/8.7.1
+> Accept: */*
+< HTTP/2 200
+< server: nginx/1.31.6
+< date: Sun, 04 Oct 2026 16:31:38 GMT
+< content-type: application/json; charset=utf-8
+< content-length: 63
+< x-powered-by: Express
+< x-backend: A
+< cache-control: no-store
+< etag: W/"3f-AjE2s0AVe4scRNIOeE1YFy44vA8"
+{"backend":"A","status":"ok","time":"2026-10-04T16:31:38.398Z"}
+(trimmed: curl progress meter and HTTP/2 pseudo-header lines removed)

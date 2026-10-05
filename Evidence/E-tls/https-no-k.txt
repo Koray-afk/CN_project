@@ -1,0 +1,30 @@
+===== Kevish: CA trusted (sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/Downloads/rootCA.pem) =====
+curl -i https://app.team07.test/api/status
+HTTP/2 200
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 15:04:51 GMT
+content-type: application/json; charset=utf-8
+content-length: 63
+x-powered-by: Express
+x-backend: B
+cache-control: no-store
+etag: W/"3f-iSepoy0plJ27vFDVva5Q7cyZ52A"
+
+{"backend":"B","status":"ok","time":"2026-10-04T15:04:51.307Z"}
+
+===== Abhimaan: CA trusted (same command, ~/cn-certs/rootCA.pem) =====
+curl -i https://app.team07.test/api/status
+HTTP/2 200
+server: nginx/1.31.6
+date: Sun, 04 Oct 2026 15:08:46 GMT
+x-backend: B
+cache-control: no-store
+{"backend":"B","status":"ok","time":"2026-10-04T15:08:46.365Z"}
+dig @10.7.19.109 app.team07.test +short -> 10.7.7.5
+
+===== Abhimaan: nginx on 443 =====
+sudo nginx -t -> syntax is ok / test is successful
+nginx 17145 root 7u IPv4 ... TCP *:443 (LISTEN)
+
+===== Bhawana (DNS server, optional client) =====
+Not on our DNS (it is the DNS server): `curl https://app.team07.test` -> Could not resolve host (expected, not a TLS fault).

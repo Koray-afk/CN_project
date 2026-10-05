@@ -1,0 +1,3 @@
+curl -sI --http1.1 https://app.team07.test/api/status | head -1   ->   HTTP/1.1 200 OK
+curl -sI --http2   https://app.team07.test/api/status | head -1   ->   HTTP/2 200
+Negotiated by ALPN inside the TLS Client Hello (h2, http/1.1); nginx config: `listen 443 ssl; http2 on;`.

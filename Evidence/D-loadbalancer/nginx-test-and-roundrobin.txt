@@ -1,0 +1,25 @@
+===== Abhimaan: nginx -t (clean config) =====
+nginx: the configuration file /opt/homebrew/etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /opt/homebrew/etc/nginx/nginx.conf test is successful
+
+===== Abhimaan: listening + localhost test (HTTP stage) =====
+sudo lsof -iTCP:80 -sTCP:LISTEN -n -P
+nginx   16556   root    6u  IPv4 ... TCP *:80 (LISTEN)
+nginx   16558 nobody    6u  IPv4 ... TCP *:80 (LISTEN)
+curl -i -H "Host: app.team07.test" http://localhost/api/status
+HTTP/1.1 200 OK / Server: nginx/1.31.6 / X-Backend: A  {"backend":"A","status":"ok",...}
+
+===== Client, by domain name only (HTTP stage) =====
+for i in 1 2 3 4; do curl -si http://app.team07.test/api/status | grep X-Backend; done
+X-Backend: B
+X-Backend: A
+X-Backend: B
+X-Backend: A
+curl -i http://app.team07.test/api/status
+HTTP/1.1 200 OK
+Server: nginx/1.31.6
+X-Backend: B  ...  {"backend":"B","status":"ok","time":"2026-10-04T14:59:52.340Z"}
+
+===== Kevish, over HTTPS (after restart of laptops) =====
+for i in 1 2 3 4; do curl -si https://app.team07.test/api/status | grep -i x-backend; done
+x-backend: B  /  x-backend: A  /  x-backend: B  /  x-backend: A      (16:22:53 - 16:22:56 UTC, matches the backend-tab log lines)
