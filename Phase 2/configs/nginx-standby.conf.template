@@ -1,0 +1,34 @@
+upstream team07_backends {
+    zone team07_backends 256k;
+    server 127.0.0.1:3001 max_fails=1 fail_timeout=10s;
+    server 127.0.0.1:3002 max_fails=1 fail_timeout=10s;
+}
+
+server {
+    listen 80;
+    server_name app.team07.test api.team07.test;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name app.team07.test api.team07.test;
+
+    ssl_certificate     @BREW_PREFIX@/etc/nginx/certs/team07/standby.crt;
+    ssl_certificate_key @BREW_PREFIX@/etc/nginx/certs/team07/standby.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    add_header X-Edge standby always;
+
+    location / {
+        proxy_pass http://team07_backends;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 2s;
+        proxy_next_upstream error timeout http_502 http_503;
+        proxy_next_upstream_tries 2;
+    }
+}

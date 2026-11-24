@@ -1,0 +1,42 @@
+Team 07 Phase 2D — recovery and final HTTPS preflight
+2026-11-24 18:34:45 IST
+
+Local port 3001
+{"backend":"A","status":"ok","time":"2026-11-24T13:04:45.715Z"}
+
+Local port 3002
+{"backend":"B","status":"ok","time":"2026-11-24T13:04:45.729Z"}
+
+Normal HTTPS following the restart
+HTTP/2 200
+x-backend: B
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: A
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: B
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: A
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: B
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: A
+Remote IP: 10.7.15.27
+
+DNS restored on both resolvers
+10.7.8.58
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+10.7.15.27
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+
+HTTP caching for final demo
+HTTP/2 200
+cache-control: public, max-age=60
+etag: W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+HTTP/2 304

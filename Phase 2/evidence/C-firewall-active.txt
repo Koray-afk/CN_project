@@ -1,0 +1,22 @@
+Team 07 Phase 2C — active PF isolation
+
+Operator-supplied activation: com.apple/team07-phase2, PF enabled; two pass and two block rules loaded.
+
+Abhiman direct requests (operator-supplied)
+Port 3001: {"backend":"A","status":"ok","time":"2026-11-24T13:01:10.668Z"}
+Port 3002: {"backend":"B","status":"ok","time":"2026-11-24T13:01:10.702Z"}
+
+Bhawana direct requests (operator-supplied)
+Port 3001: curl (28), connection timeout after 3006 ms
+Port 3002: curl (28), connection timeout after 3003 ms
+
+Independent HTTPS check from Kevish
+2026-11-24 18:31:52 IST
+HTTP/2 200
+x-backend: A
+{"backend":"A","status":"ok","time":"2026-11-24T13:01:52.567Z"}
+Remote IP: 10.7.15.27
+HTTP/2 200
+x-backend: B
+{"backend":"B","status":"ok","time":"2026-11-24T13:01:52.683Z"}
+Remote IP: 10.7.15.27

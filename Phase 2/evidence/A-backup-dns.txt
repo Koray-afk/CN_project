@@ -1,0 +1,38 @@
+Team 07 Phase 2A — backup DNS and recovery
+
+Operator-supplied evidence
+Both clients listed 10.7.8.58 and 10.7.15.27 for team07.test and returned HTTP/2 200.
+Bhawana stopped dnsmasq successfully.
+After flushing the client cache, direct dig to 10.7.8.58 timed out.
+Normal HTTPS then returned HTTP/2 200 and x-backend: B.
+Bhawana restarted dnsmasq. Subsequent direct lookups returned TTL 60 and 10.7.15.27 from both servers.
+
+Current answers independently checked from Kevish
+2026-11-24 18:05:35 IST
+Resolver 10.7.8.58
+app.team07.test.	60	IN	A	10.7.15.27
+api.team07.test.	60	IN	A	10.7.15.27
+Resolver 10.7.15.27
+app.team07.test.	60	IN	A	10.7.15.27
+api.team07.test.	60	IN	A	10.7.15.27
+
+Solo control (already running on Abhiman)
+app.solo.test.		30	IN	A	10.7.3.98
+
+Relevant excerpts from the supplied failover and restore transcripts
+
+Both configured client sessions:
+nameserver 10.7.8.58
+nameserver 10.7.15.27
+HTTP/2 200
+x-backend: A
+
+Primary stop and fresh client check:
+==> Successfully stopped dnsmasq (label: sh.brew.dnsmasq)
+;; connection timed out; no servers could be reached
+HTTP/2 200
+x-backend: B
+
+Primary restore:
+==> Successfully started dnsmasq (label: sh.brew.dnsmasq)
+app.team07.test.    60    IN    A    10.7.15.27

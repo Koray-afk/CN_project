@@ -1,0 +1,11 @@
+Team 07 Phase 2E standby certificate signing
+
+Operator-supplied output from Abhiman's Mac
+Certificate request self-signature verify OK
+Certificate request self-signature ok
+subject=CN=app.team07.test
+Hostname verification for app.team07.test: OK
+Hostname verification for api.team07.test: OK
+
+Kevish verified the signed leaf matches the local key and is trusted for both hostnames.
+The standby site passed nginx syntax validation alongside the existing site.

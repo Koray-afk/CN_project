@@ -1,0 +1,9 @@
+Team 07 Phase 2D live failover while Backend A was stopped
+
+Kevish, operator-supplied results
+Request 1: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27
+Request 2: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27
+Request 3: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27
+Request 4: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27
+Request 5: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27
+Request 6: HTTP/2 200 | X-Backend: B | Remote IP: 10.7.15.27

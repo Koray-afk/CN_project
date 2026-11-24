@@ -1,0 +1,17 @@
+Team 07 Phase 2 B/E rollback and local Phase 2C preflight
+2026-11-24 18:28:47 IST
+
+Resolver 10.7.8.58
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+
+Resolver 10.7.15.27
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+Normal HTTPS 200, remote IP 10.7.15.27
+
+Local backend port 3001
+{"backend":"A","status":"ok","time":"2026-11-24T12:58:48.517Z"}
+
+Local backend port 3002
+{"backend":"B","status":"ok","time":"2026-11-24T12:58:48.532Z"}

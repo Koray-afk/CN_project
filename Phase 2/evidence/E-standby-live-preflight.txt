@@ -1,0 +1,26 @@
+Team 07 Phase 2E standby HTTPS and DNS preflight
+2026-11-24 18:15:41 IST
+
+Direct TLS-verified standby request: app.team07.test
+HTTP/2 200
+x-backend: A
+x-edge: standby
+
+Direct TLS-verified standby request: api.team07.test
+HTTP/2 200
+x-backend: B
+x-edge: standby
+
+Normal app hostname still reaches Abhiman
+HTTP 200 | remote IP 10.7.15.27
+
+Normal api hostname still reaches Abhiman
+HTTP 200 | remote IP 10.7.15.27
+
+Fresh DNS answers before cutover
+Resolver 10.7.8.58
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+Resolver 10.7.15.27
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27

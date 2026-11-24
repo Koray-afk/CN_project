@@ -1,0 +1,17 @@
+Team 07 Phase 2F — troubleshooting rehearsal
+2026-11-24 18:34:02 IST
+
+DNS lookup for the project hostname
+app.team07.test.	30	IN	A	10.7.15.27
+
+TCP check at deliberately incorrect port 8443
+nc: connectx to 10.7.15.27 port 8443 (tcp) failed: Connection refused
+
+TCP check at the configured HTTPS port 443
+Connection to 10.7.15.27 port 443 [tcp/https] succeeded!
+
+Trusted HTTPS after correcting the destination port
+HTTP/2 200
+x-backend: B
+
+Diagnosis: wrong TCP destination port. Faculty challenge outcome is separate.

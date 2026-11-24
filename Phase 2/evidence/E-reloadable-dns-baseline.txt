@@ -1,0 +1,11 @@
+Team 07 Phase 2 B/E — pre-cutover baseline after DNS preparation
+2026-11-24 18:19:09 IST
+
+Resolver 10.7.8.58
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+
+Resolver 10.7.15.27
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+Normal app HTTPS: HTTP 200, remote IP 10.7.15.27

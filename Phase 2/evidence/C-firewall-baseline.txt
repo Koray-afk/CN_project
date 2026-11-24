@@ -1,0 +1,11 @@
+Team 07 Phase 2C — direct backend access before isolation
+
+Two operator-supplied runs from the Bhawana and Abhiman baseline check, in the order provided.
+
+Run 1
+Port 3001: {"backend":"A","status":"ok","time":"2026-11-24T12:59:22.439Z"}
+Port 3002: {"backend":"B","status":"ok","time":"2026-11-24T12:59:22.505Z"}
+
+Run 2
+Port 3001: {"backend":"A","status":"ok","time":"2026-11-24T12:59:19.552Z"}
+Port 3002: {"backend":"B","status":"ok","time":"2026-11-24T12:59:19.579Z"}

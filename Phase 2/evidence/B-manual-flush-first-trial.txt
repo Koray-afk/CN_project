@@ -1,0 +1,11 @@
+Team 07 Phase 2B manual DNS flush, first trial
+
+Operator-supplied output
+Standby warm-up: 10.7.3.98
+Bhawana's direct answer after rollback: 10.7.15.27
+Abhiman's direct answer after rollback: 10.7.15.27
+Before flush: 10.7.15.27
+After flush: 10.7.15.27
+
+Primary rollback succeeded. The observed before and after requests both reached
+the primary, so this trial does not isolate the effect of the client cache flush.

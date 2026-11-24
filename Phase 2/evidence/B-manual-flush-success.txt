@@ -1,0 +1,13 @@
+Team 07 Phase 2B explicit cache-flush verification, 2026-11-24 IST
+
+Kevish's operator-supplied output from check-team07-cache-flush.sh
+
+18:27:04 Warm HTTPS remote IP: 10.7.15.27
+SWITCH NOW: Bhawana and Abhiman should each run team07_standby.
+18:27:15 Both direct DNS answers: 10.7.3.98
+18:27:16 Before flush: 10.7.15.27
+18:27:16 After flush: 10.7.3.98
+
+The normal HTTPS client still reached the cached primary after both
+resolvers returned standby. It reached standby immediately after the
+local macOS DNS flush within the same displayed second.

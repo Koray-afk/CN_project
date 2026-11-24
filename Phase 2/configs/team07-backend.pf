@@ -1,0 +1,7 @@
+# Load as com.apple/team07-phase2 on Kevish for the temporary LAN demonstration.
+lan_if = "en0"
+team07_primary = "10.7.15.27"
+team07_backend_ports = "{ 3001, 3002 }"
+
+pass in quick on $lan_if inet proto tcp from $team07_primary to any port $team07_backend_ports keep state
+block drop in quick on $lan_if proto tcp from any to any port $team07_backend_ports

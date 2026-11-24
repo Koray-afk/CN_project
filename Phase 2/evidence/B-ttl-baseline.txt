@@ -1,0 +1,12 @@
+Team 07 Phase 2B — live 30-second TTL baseline
+2026-11-24 18:08:28 IST
+
+Resolver 10.7.8.58
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+
+Resolver 10.7.15.27
+app.team07.test.	30	IN	A	10.7.15.27
+api.team07.test.	30	IN	A	10.7.15.27
+
+Verified matching TTL and destination. Cache expiry and explicit flush tests are still pending.
